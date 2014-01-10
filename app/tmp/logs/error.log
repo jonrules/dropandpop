@@ -1,0 +1,9 @@
+2014-01-09 18:50:28 Error: [MissingControllerException] Controller class Uploaded-filesController could not be found.
+Exception Attributes: array (
+  'class' => 'Uploaded-filesController',
+  'plugin' => NULL,
+)
+Request URL: /uploaded-files
+Stack Trace:
+#0 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
