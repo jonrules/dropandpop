@@ -36,6 +36,10 @@ class PagesController extends AppController {
  * @var array
  */
 	public $uses = array();
+	
+	public function index() {
+		$this->set('title_for_layout', 'Drop and Pop!');
+	}
 
 /**
  * Displays a view

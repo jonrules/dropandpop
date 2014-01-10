@@ -102,4 +102,10 @@ class UploadedFilesController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 	
+	public function upload() {
+		header('Content-Type: text/html');
+		var_dump($_FILES);
+		exit;
+	}
+	
 }

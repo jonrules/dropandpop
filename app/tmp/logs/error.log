@@ -7,3 +7,51 @@ Request URL: /uploaded-files
 Stack Trace:
 #0 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-01-09 19:36:00 Error: [MissingViewException] View file "/home/jonathan/workspace/dropandpop/app/View/Pages/index.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/jonathan/workspace/dropandpop/app/View/Pages/index.ctp',
+)
+Request URL: /
+Stack Trace:
+#0 /home/jonathan/workspace/dropandpop/lib/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/jonathan/workspace/dropandpop/lib/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/jonathan/workspace/dropandpop/lib/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/jonathan/workspace/dropandpop/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-01-09 20:20:06 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/jquery.dropandpop/jquery.dropandpop.css
+Stack Trace:
+#0 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-01-09 20:20:19 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/jquery.dropandpop/jquery.dropandpop.css
+Stack Trace:
+#0 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-01-09 21:37:31 Error: [MissingControllerException] Controller class UploadUrlController could not be found.
+Exception Attributes: array (
+  'class' => 'UploadUrlController',
+  'plugin' => NULL,
+)
+Request URL: /uploadUrl
+Stack Trace:
+#0 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-01-09 21:39:29 Error: [MissingControllerException] Controller class UploadUrlController could not be found.
+Exception Attributes: array (
+  'class' => 'UploadUrlController',
+  'plugin' => NULL,
+)
+Request URL: /uploadUrl
+Stack Trace:
+#0 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
