@@ -11,6 +11,12 @@
 		
 		this.addClass('dropandpop');
 		
+		/* 
+		 * Add elements
+		 */
+		
+		this.append('<div class="dropandpop-progress-bar"></div>');
+		
 		
 		/*
 		 * Helper functions
@@ -19,11 +25,13 @@
 		var setUploading = function() {
 			isUploading = true;
 			$this.addClass('dropandpop-uploading');
+			$this.find('.dropandpop-progress-bar').css('left', '-100%').text('');
 		};
 		
 		var unsetUploading =  function() {
 			isUploading = false;
 			$this.removeClass('dropandpop-uploading');
+			$this.find('.dropandpop-progress-bar').css('left', '-100%').text('');
 		};
 		
 		
@@ -31,8 +39,10 @@
 		 * Event handlers
 		 */
 		
-		var updateProgressHandler = function() {
-
+		var updateProgressHandler = function(e) {
+			var complete = Math.round(e.loaded / e.total * 100);
+			var left = complete - 100;
+			$this.find('.dropandpop-progress-bar').css('left', left + '%').text(complete + '%');
 		};
 		
 		var transferCompleteHandler = function() {
