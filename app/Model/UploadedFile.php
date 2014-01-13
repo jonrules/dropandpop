@@ -21,7 +21,7 @@ class UploadedFile extends AppModel {
 	public $validate = array(
 		'id' => array(
 			'0_9' => array(
-				'rule' => array('/^[0-9]+$/'),
+				'rule' => '/^[0-9]+$/',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -31,7 +31,7 @@ class UploadedFile extends AppModel {
 		),
 		'name' => array(
 			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
+				'rule' => '/^[\w.\-]+/',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -41,7 +41,7 @@ class UploadedFile extends AppModel {
 		),
 		'ext' => array(
 			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
+				'rule' => '/^[0-9a-zA-Z.]+$/',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -58,4 +58,10 @@ class UploadedFile extends AppModel {
 			),
 		),
 	);
+	
+	public function beforeDelete($cascade=true) {
+		$record = $this->read('name');
+		$filename = WWW_ROOT . 'files/uploadedFiles/' . $record['UploadedFile']['name'];
+		unlink($filename);
+	}
 }

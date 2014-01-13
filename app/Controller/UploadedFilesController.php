@@ -103,9 +103,53 @@ class UploadedFilesController extends AppController {
 	}
 	
 	public function upload() {
-		header('Content-Type: text/html');
-		var_dump($_FILES);
+		$this->autoRender = false;
+		if (empty($_FILES['uploadedFiles'])) {
+			header('HTTP/1.1 400 Bad Request');
+			exit;
+		}
+		
+		$ids = array();
+		foreach ($_FILES['uploadedFiles']['error'] as $f => $error) {
+			if ($error === UPLOAD_ERR_OK) {
+				$filename = $_FILES['uploadedFiles']['tmp_name'][$f];
+				$destination = WWW_ROOT . 'files' . DS . 'uploadedFiles' . DS
+					. $_FILES['uploadedFiles']['name'][$f];
+				$moved = move_uploaded_file($filename, $destination);
+				if ($moved) {
+					$this->UploadedFile->create();
+					$saved = $this->UploadedFile->save(array(
+						'name' => $_FILES['uploadedFiles']['name'][$f],
+						'ext' => $this->_getFileExt($_FILES['uploadedFiles']['name'][$f]),
+						'mimetype' => $_FILES['uploadedFiles']['type'][$f]
+					));
+					if (!$saved) {
+						unlink($destination);
+						foreach ($ids as $id) {
+							$this->UploadedFile->delete($id);
+						}
+						header('HTTP/1.1 500 Internal Server Error');
+						exit;
+					}
+					$ids[] = $this->UploadedFile->id;
+				}
+			} else {
+				foreach ($ids as $id) {
+					$this->UploadedFile->delete($id);
+				}
+				header('HTTP/1.1 500 Internal Server Error');
+				exit;
+			}
+		}
+		header('HTTP/1.1 200 OK');
+		header('Content-Type: application/json');
+		echo json_encode($ids);
 		exit;
+	}
+	
+	private function _getFileExt($name) {
+		$splitName = explode('.', $name, 2);
+		return $splitName[1];
 	}
 	
 }

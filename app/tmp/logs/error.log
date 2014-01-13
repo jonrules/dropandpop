@@ -55,3 +55,12 @@ Request URL: /uploadUrl
 Stack Trace:
 #0 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-01-10 13:26:27 Error: [NotFoundException] Invalid uploaded file
+Request URL: /UploadedFiles/delete/7
+Stack Trace:
+#0 [internal function]: UploadedFilesController->delete('7')
+#1 /home/jonathan/workspace/dropandpop/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UploadedFilesController), Array)
+#2 /home/jonathan/workspace/dropandpop/lib/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/jonathan/workspace/dropandpop/lib/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UploadedFilesController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/jonathan/workspace/dropandpop/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
