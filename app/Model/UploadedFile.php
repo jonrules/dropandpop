@@ -62,6 +62,6 @@ class UploadedFile extends AppModel {
 	public function beforeDelete($cascade=true) {
 		$record = $this->read('name');
 		$filename = WWW_ROOT . 'files/uploadedFiles/' . $record['UploadedFile']['name'];
-		unlink($filename);
+		@unlink($filename);
 	}
 }

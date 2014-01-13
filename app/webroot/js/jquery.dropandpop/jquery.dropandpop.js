@@ -36,6 +36,9 @@
 		};
 		
 		var transferCompleteHandler = function() {
+			if (onComplete) {
+				onComplete($.parseJSON(this.responseText), this);
+			}
 			unsetUploading();
 		};
 		
@@ -59,6 +62,9 @@
 			$(this).removeClass('dropandpop-drag-over');
 			setUploading();
 			var files = e.originalEvent.target.files || e.originalEvent.dataTransfer.files;
+			if (onDrop) {
+				onDrop(files, e);
+			}
 			var xhr = new XMLHttpRequest();
 			xhr.addEventListener("progress", updateProgressHandler, false);
 			xhr.addEventListener("load", transferCompleteHandler, false);

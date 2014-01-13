@@ -110,6 +110,7 @@ class UploadedFilesController extends AppController {
 		}
 		
 		$ids = array();
+		$response = array();
 		foreach ($_FILES['uploadedFiles']['error'] as $f => $error) {
 			if ($error === UPLOAD_ERR_OK) {
 				$filename = $_FILES['uploadedFiles']['tmp_name'][$f];
@@ -132,6 +133,7 @@ class UploadedFilesController extends AppController {
 						exit;
 					}
 					$ids[] = $this->UploadedFile->id;
+					$response[] = $this->UploadedFile->read();
 				}
 			} else {
 				foreach ($ids as $id) {
@@ -143,7 +145,7 @@ class UploadedFilesController extends AppController {
 		}
 		header('HTTP/1.1 200 OK');
 		header('Content-Type: application/json');
-		echo json_encode($ids);
+		echo json_encode($response);
 		exit;
 	}
 	

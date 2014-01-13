@@ -1,3 +1,22 @@
-.dropbox {
-	
+#file-drop {
+	margin: 10px 0;
+}
+
+#file-line {
+	margin: 10px 0;
+	padding: 0 10px;
+	width: 100%;
+	text-align: center;
+}
+
+#file-viewer {
+	margin: 10px 0;
+}
+
+.file-icon {
+	width: 48px;
+	height: 48px;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
 }
