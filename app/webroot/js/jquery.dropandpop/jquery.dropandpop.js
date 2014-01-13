@@ -76,7 +76,7 @@
 				onDrop(files, e);
 			}
 			var xhr = new XMLHttpRequest();
-			xhr.addEventListener("progress", updateProgressHandler, false);
+			xhr.upload.addEventListener("progress", updateProgressHandler, false);
 			xhr.addEventListener("load", transferCompleteHandler, false);
 			xhr.addEventListener("error", transferFailedHandler, false);
 			xhr.addEventListener("abort", transferCanceledHandler, false);
