@@ -31,6 +31,9 @@ app/Config/email.php
 app/tmp/cache/models/*
 app/tmp/cache/persistent/*
 app/tmp/cache/views/*
+app/tmp/logs/*
+app/tmp/sessions/*
+app/tmp/tests/*
 
 # Misc
 *.ignore
