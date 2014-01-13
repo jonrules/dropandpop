@@ -35,10 +35,12 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array();
+	public $uses = array('UploadedFile');
 	
 	public function index() {
 		$this->set('title_for_layout', 'Drop and Pop!');
+		$this->UploadedFile->recursive = 0;
+		$this->set('uploadedFiles', $this->UploadedFile->find('all'));
 	}
 
 /**

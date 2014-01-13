@@ -10,11 +10,13 @@
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('dropandpop.css');
+		echo $this->Html->css('jquery-ui/overcast/jquery-ui-1.10.3.custom.min.css');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 </head>
 <body>
 	<div id="container">
