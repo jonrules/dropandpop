@@ -5,6 +5,7 @@
 	border: 1px solid gray;
 	position: relative;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .dropandpop-drag-over {
@@ -26,4 +27,9 @@
 	line-height: 100%;
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.dropandpop-file-input {
+	position: absolute;
+	top: -200px;
 }

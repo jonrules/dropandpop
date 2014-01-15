@@ -16,10 +16,12 @@
 		 */
 		
 		this.append('<div class="dropandpop-progress-bar"></div>');
+		var $fileInput = $('<input type="file" class="dropandpop-file-input" />');
+		this.append($fileInput);
 		
 		
 		/*
-		 * Helper functions
+		 * Functions
 		 */
 		
 		var setUploading = function() {
@@ -32,6 +34,20 @@
 			isUploading = false;
 			$this.removeClass('dropandpop-uploading');
 			$this.find('.dropandpop-progress-bar').css('left', '-100%').text('');
+		};
+		
+		var uploadFiles = function(files) {
+			var xhr = new XMLHttpRequest();
+			xhr.upload.addEventListener("progress", updateProgressHandler, false);
+			xhr.addEventListener("load", transferCompleteHandler, false);
+			xhr.addEventListener("error", transferFailedHandler, false);
+			xhr.addEventListener("abort", transferCanceledHandler, false);
+			xhr.open('POST', uploadUrl, true);
+			var formData = new FormData;
+			for (var f = 0; f < files.length; f++) {
+				formData.append('uploadedFiles[' + f + ']', files[f]);
+			}
+			xhr.send(formData);
 		};
 		
 		
@@ -62,7 +78,7 @@
 		
 		var changeHandler = function(e) {
 			e.preventDefault();
-		}
+		};
 		this.bind('change', changeHandler);
 		
 		var dropHandler = function(e) {
@@ -75,32 +91,35 @@
 			if (onDrop) {
 				onDrop(files, e);
 			}
-			var xhr = new XMLHttpRequest();
-			xhr.upload.addEventListener("progress", updateProgressHandler, false);
-			xhr.addEventListener("load", transferCompleteHandler, false);
-			xhr.addEventListener("error", transferFailedHandler, false);
-			xhr.addEventListener("abort", transferCanceledHandler, false);
-			xhr.open('POST', uploadUrl, true);
-			var formData = new FormData;
-			for (var f = 0; f < files.length; f++) {
-				formData.append('uploadedFiles[' + f + ']', files[f]);
-			}
-			xhr.send(formData);
-		}
+			uploadFiles(files);
+		};
 		this.bind('drop', dropHandler);
 		
 		var dragoverHandler = function(e) {
 			e.preventDefault();
 			$(this).addClass('dropandpop-drag-over');
-		}
+		};
 		this.bind('dragover', dragoverHandler);
 		
 		var dragleaveHandler = function(e) {
 			e.preventDefault();
 			$(this).removeClass('dropandpop-drag-over');
-		}
+		};
 		this.bind('dragleave', dragleaveHandler);
 		
+		var clickHandler = function(e) {
+			var $fileInput = $(this).find('.dropandpop-file-input');
+			$fileInput.trigger('click');
+		};
+		this.bind('mouseup', clickHandler);
+		
+		var fileSelectHandler = function(e) {
+			$(this).removeClass('dropandpop-drag-over');
+			setUploading();
+			var files = e.originalEvent.target.files || e.originalEvent.dataTransfer.files;
+			uploadFiles(files);
+		};
+		$fileInput.bind('change', fileSelectHandler);
 		
 		return this;
 	};
